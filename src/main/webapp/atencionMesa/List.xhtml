@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListAtencionMesaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListAtencionMesaEmpty}" rendered="#{atencionMesaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{atencionMesaController.items.rowCount > 0}">
+                    <h:outputText value="#{atencionMesaController.pagination.pageFirstItem + 1}..#{atencionMesaController.pagination.pageLastItem + 1}/#{atencionMesaController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{atencionMesaController.previous}" value="#{bundle.Previous} #{atencionMesaController.pagination.pageSize}" rendered="#{atencionMesaController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{atencionMesaController.next}" value="#{bundle.Next} #{atencionMesaController.pagination.pageSize}" rendered="#{atencionMesaController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{atencionMesaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAtencionMesaTitle_ateId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ateId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAtencionMesaTitle_ateFecha}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ateFecha}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAtencionMesaTitle_ateEstado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ateEstado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAtencionMesaTitle_ateNumeroOrden}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ateNumeroOrden}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAtencionMesaTitle_cliCodigo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cliCodigo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAtencionMesaTitle_mesaMesaAtencion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.mesaMesaAtencion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAtencionMesaTitle_mesMeseroEncargado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.mesMeseroEncargado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{atencionMesaController.prepareView}" value="#{bundle.ListAtencionMesaViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{atencionMesaController.prepareEdit}" value="#{bundle.ListAtencionMesaEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{atencionMesaController.destroy}" value="#{bundle.ListAtencionMesaDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{atencionMesaController.prepareCreate}" value="#{bundle.ListAtencionMesaCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListAtencionMesaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

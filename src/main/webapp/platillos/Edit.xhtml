@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPlatillosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPlatillosLabel_platId}" for="platId" />
+                    <h:inputText id="platId" value="#{platillosController.selected.platId}" title="#{bundle.EditPlatillosTitle_platId}" required="true" requiredMessage="#{bundle.EditPlatillosRequiredMessage_platId}"/>
+                    <h:outputLabel value="#{bundle.EditPlatillosLabel_platNombre}" for="platNombre" />
+                    <h:inputText id="platNombre" value="#{platillosController.selected.platNombre}" title="#{bundle.EditPlatillosTitle_platNombre}" required="true" requiredMessage="#{bundle.EditPlatillosRequiredMessage_platNombre}"/>
+                    <h:outputLabel value="#{bundle.EditPlatillosLabel_platDetalle}" for="platDetalle" />
+                    <h:inputText id="platDetalle" value="#{platillosController.selected.platDetalle}" title="#{bundle.EditPlatillosTitle_platDetalle}" />
+                </h:panelGrid>
+                <h:commandLink action="#{platillosController.update}" value="#{bundle.EditPlatillosSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPlatillosViewLink}"/>
+                <br />
+                <h:commandLink action="#{platillosController.prepareList}" value="#{bundle.EditPlatillosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPlatillosIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

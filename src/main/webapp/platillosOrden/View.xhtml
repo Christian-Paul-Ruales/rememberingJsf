@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPlatillosOrdenTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPlatillosOrdenLabel_plaoId}"/>
+                    <h:outputText value="#{platillosOrdenController.selected.plaoId}" title="#{bundle.ViewPlatillosOrdenTitle_plaoId}"/>
+                    <h:outputText value="#{bundle.ViewPlatillosOrdenLabel_plaoFechaServido}"/>
+                    <h:outputText value="#{platillosOrdenController.selected.plaoFechaServido}" title="#{bundle.ViewPlatillosOrdenTitle_plaoFechaServido}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewPlatillosOrdenLabel_plaoServido}"/>
+                    <h:outputText value="#{platillosOrdenController.selected.plaoServido}" title="#{bundle.ViewPlatillosOrdenTitle_plaoServido}"/>
+                    <h:outputText value="#{bundle.ViewPlatillosOrdenLabel_plaoDetalle}"/>
+                    <h:outputText value="#{platillosOrdenController.selected.plaoDetalle}" title="#{bundle.ViewPlatillosOrdenTitle_plaoDetalle}"/>
+                    <h:outputText value="#{bundle.ViewPlatillosOrdenLabel_ateOrden}"/>
+                    <h:outputText value="#{platillosOrdenController.selected.ateOrden}" title="#{bundle.ViewPlatillosOrdenTitle_ateOrden}"/>
+                    <h:outputText value="#{bundle.ViewPlatillosOrdenLabel_platPlatillo}"/>
+                    <h:outputText value="#{platillosOrdenController.selected.platPlatillo}" title="#{bundle.ViewPlatillosOrdenTitle_platPlatillo}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{platillosOrdenController.destroyAndView}" value="#{bundle.ViewPlatillosOrdenDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPlatillosOrdenEditLink}"/>
+                <br />
+                <h:commandLink action="#{platillosOrdenController.prepareCreate}" value="#{bundle.ViewPlatillosOrdenCreateLink}" />
+                <br />
+                <h:commandLink action="#{platillosOrdenController.prepareList}" value="#{bundle.ViewPlatillosOrdenShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPlatillosOrdenIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

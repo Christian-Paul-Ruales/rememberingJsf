@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditAtencionMesaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditAtencionMesaLabel_ateId}" for="ateId" />
+                    <h:inputText id="ateId" value="#{atencionMesaController.selected.ateId}" title="#{bundle.EditAtencionMesaTitle_ateId}" required="true" requiredMessage="#{bundle.EditAtencionMesaRequiredMessage_ateId}"/>
+                    <h:outputLabel value="#{bundle.EditAtencionMesaLabel_ateFecha}" for="ateFecha" />
+                    <h:inputText id="ateFecha" value="#{atencionMesaController.selected.ateFecha}" title="#{bundle.EditAtencionMesaTitle_ateFecha}" required="true" requiredMessage="#{bundle.EditAtencionMesaRequiredMessage_ateFecha}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditAtencionMesaLabel_ateEstado}" for="ateEstado" />
+                    <h:inputText id="ateEstado" value="#{atencionMesaController.selected.ateEstado}" title="#{bundle.EditAtencionMesaTitle_ateEstado}" required="true" requiredMessage="#{bundle.EditAtencionMesaRequiredMessage_ateEstado}"/>
+                    <h:outputLabel value="#{bundle.EditAtencionMesaLabel_ateNumeroOrden}" for="ateNumeroOrden" />
+                    <h:inputText id="ateNumeroOrden" value="#{atencionMesaController.selected.ateNumeroOrden}" title="#{bundle.EditAtencionMesaTitle_ateNumeroOrden}" required="true" requiredMessage="#{bundle.EditAtencionMesaRequiredMessage_ateNumeroOrden}"/>
+                    <h:outputLabel value="#{bundle.EditAtencionMesaLabel_cliCodigo}" for="cliCodigo" />
+                    <h:selectOneMenu id="cliCodigo" value="#{atencionMesaController.selected.cliCodigo}" title="#{bundle.EditAtencionMesaTitle_cliCodigo}" required="true" requiredMessage="#{bundle.EditAtencionMesaRequiredMessage_cliCodigo}">
+                        <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditAtencionMesaLabel_mesaMesaAtencion}" for="mesaMesaAtencion" />
+                    <h:selectOneMenu id="mesaMesaAtencion" value="#{atencionMesaController.selected.mesaMesaAtencion}" title="#{bundle.EditAtencionMesaTitle_mesaMesaAtencion}" required="true" requiredMessage="#{bundle.EditAtencionMesaRequiredMessage_mesaMesaAtencion}">
+                        <f:selectItems value="#{mesaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditAtencionMesaLabel_mesMeseroEncargado}" for="mesMeseroEncargado" />
+                    <h:selectOneMenu id="mesMeseroEncargado" value="#{atencionMesaController.selected.mesMeseroEncargado}" title="#{bundle.EditAtencionMesaTitle_mesMeseroEncargado}" >
+                        <f:selectItems value="#{meseroController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{atencionMesaController.update}" value="#{bundle.EditAtencionMesaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditAtencionMesaViewLink}"/>
+                <br />
+                <h:commandLink action="#{atencionMesaController.prepareList}" value="#{bundle.EditAtencionMesaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditAtencionMesaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

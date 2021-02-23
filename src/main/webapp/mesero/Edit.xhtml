@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditMeseroTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditMeseroLabel_mesId}" for="mesId" />
+                    <h:inputText id="mesId" value="#{meseroController.selected.mesId}" title="#{bundle.EditMeseroTitle_mesId}" required="true" requiredMessage="#{bundle.EditMeseroRequiredMessage_mesId}"/>
+                    <h:outputLabel value="#{bundle.EditMeseroLabel_mesNombre}" for="mesNombre" />
+                    <h:inputText id="mesNombre" value="#{meseroController.selected.mesNombre}" title="#{bundle.EditMeseroTitle_mesNombre}" required="true" requiredMessage="#{bundle.EditMeseroRequiredMessage_mesNombre}"/>
+                    <h:outputLabel value="#{bundle.EditMeseroLabel_mesUsuario}" for="mesUsuario" />
+                    <h:inputText id="mesUsuario" value="#{meseroController.selected.mesUsuario}" title="#{bundle.EditMeseroTitle_mesUsuario}" required="true" requiredMessage="#{bundle.EditMeseroRequiredMessage_mesUsuario}"/>
+                    <h:outputLabel value="#{bundle.EditMeseroLabel_mesPassword}" for="mesPassword" />
+                    <h:inputText id="mesPassword" value="#{meseroController.selected.mesPassword}" title="#{bundle.EditMeseroTitle_mesPassword}" required="true" requiredMessage="#{bundle.EditMeseroRequiredMessage_mesPassword}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{meseroController.update}" value="#{bundle.EditMeseroSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditMeseroViewLink}"/>
+                <br />
+                <h:commandLink action="#{meseroController.prepareList}" value="#{bundle.EditMeseroShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditMeseroIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

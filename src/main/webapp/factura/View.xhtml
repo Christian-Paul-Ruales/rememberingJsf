@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewFacturaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewFacturaLabel_facId}"/>
+                    <h:outputText value="#{facturaController.selected.facId}" title="#{bundle.ViewFacturaTitle_facId}"/>
+                    <h:outputText value="#{bundle.ViewFacturaLabel_facNumero}"/>
+                    <h:outputText value="#{facturaController.selected.facNumero}" title="#{bundle.ViewFacturaTitle_facNumero}"/>
+                    <h:outputText value="#{bundle.ViewFacturaLabel_facFechaCreada}"/>
+                    <h:outputText value="#{facturaController.selected.facFechaCreada}" title="#{bundle.ViewFacturaTitle_facFechaCreada}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewFacturaLabel_facFechaGenerada}"/>
+                    <h:outputText value="#{facturaController.selected.facFechaGenerada}" title="#{bundle.ViewFacturaTitle_facFechaGenerada}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewFacturaLabel_facGenerada}"/>
+                    <h:outputText value="#{facturaController.selected.facGenerada}" title="#{bundle.ViewFacturaTitle_facGenerada}"/>
+                    <h:outputText value="#{bundle.ViewFacturaLabel_facDetalle}"/>
+                    <h:outputText value="#{facturaController.selected.facDetalle}" title="#{bundle.ViewFacturaTitle_facDetalle}"/>
+                    <h:outputText value="#{bundle.ViewFacturaLabel_ateOrden}"/>
+                    <h:outputText value="#{facturaController.selected.ateOrden}" title="#{bundle.ViewFacturaTitle_ateOrden}"/>
+                    <h:outputText value="#{bundle.ViewFacturaLabel_cliCliente}"/>
+                    <h:outputText value="#{facturaController.selected.cliCliente}" title="#{bundle.ViewFacturaTitle_cliCliente}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{facturaController.destroyAndView}" value="#{bundle.ViewFacturaDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewFacturaEditLink}"/>
+                <br />
+                <h:commandLink action="#{facturaController.prepareCreate}" value="#{bundle.ViewFacturaCreateLink}" />
+                <br />
+                <h:commandLink action="#{facturaController.prepareList}" value="#{bundle.ViewFacturaShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewFacturaIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

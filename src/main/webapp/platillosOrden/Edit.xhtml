@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPlatillosOrdenTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPlatillosOrdenLabel_plaoId}" for="plaoId" />
+                    <h:inputText id="plaoId" value="#{platillosOrdenController.selected.plaoId}" title="#{bundle.EditPlatillosOrdenTitle_plaoId}" required="true" requiredMessage="#{bundle.EditPlatillosOrdenRequiredMessage_plaoId}"/>
+                    <h:outputLabel value="#{bundle.EditPlatillosOrdenLabel_plaoFechaServido}" for="plaoFechaServido" />
+                    <h:inputText id="plaoFechaServido" value="#{platillosOrdenController.selected.plaoFechaServido}" title="#{bundle.EditPlatillosOrdenTitle_plaoFechaServido}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditPlatillosOrdenLabel_plaoServido}" for="plaoServido" />
+                    <h:inputText id="plaoServido" value="#{platillosOrdenController.selected.plaoServido}" title="#{bundle.EditPlatillosOrdenTitle_plaoServido}" />
+                    <h:outputLabel value="#{bundle.EditPlatillosOrdenLabel_plaoDetalle}" for="plaoDetalle" />
+                    <h:inputText id="plaoDetalle" value="#{platillosOrdenController.selected.plaoDetalle}" title="#{bundle.EditPlatillosOrdenTitle_plaoDetalle}" />
+                    <h:outputLabel value="#{bundle.EditPlatillosOrdenLabel_ateOrden}" for="ateOrden" />
+                    <h:selectOneMenu id="ateOrden" value="#{platillosOrdenController.selected.ateOrden}" title="#{bundle.EditPlatillosOrdenTitle_ateOrden}" required="true" requiredMessage="#{bundle.EditPlatillosOrdenRequiredMessage_ateOrden}">
+                        <f:selectItems value="#{atencionMesaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditPlatillosOrdenLabel_platPlatillo}" for="platPlatillo" />
+                    <h:selectOneMenu id="platPlatillo" value="#{platillosOrdenController.selected.platPlatillo}" title="#{bundle.EditPlatillosOrdenTitle_platPlatillo}" required="true" requiredMessage="#{bundle.EditPlatillosOrdenRequiredMessage_platPlatillo}">
+                        <f:selectItems value="#{platillosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{platillosOrdenController.update}" value="#{bundle.EditPlatillosOrdenSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPlatillosOrdenViewLink}"/>
+                <br />
+                <h:commandLink action="#{platillosOrdenController.prepareList}" value="#{bundle.EditPlatillosOrdenShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPlatillosOrdenIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
